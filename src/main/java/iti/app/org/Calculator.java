@@ -1,7 +1,7 @@
 package iti.app.org;
 
 public class Calculator {
-    //todo
+
     /*
      * add
      * div
@@ -25,7 +25,7 @@ public class Calculator {
 
         if (b != 0) {
             res = a / b;
-            if (res == 0) return Math.abs(res);
+            if (res == -0) return Math.abs(res);
             return res;
         }
 
@@ -34,7 +34,7 @@ public class Calculator {
 
     public double mul(double a, double b) {
         double res = a * b;
-        if (res == 0) return Math.abs(res);
+        if (res == -0) return Math.abs(res);
         return res;
     }
 
@@ -43,7 +43,9 @@ public class Calculator {
     }
 
     public int getModulus(int a, int b) {
-        return Math.floorMod(a, b);
+        if (b != 0)
+            return Math.floorMod(a, b);
+        throw new ArithmeticException("b cannot be zero");
     }
 
 }

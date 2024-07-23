@@ -14,8 +14,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static java.lang.Float.NaN;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class CalculatorTests {
@@ -86,7 +85,7 @@ public class CalculatorTests {
     }
 
     @Test
-    @EnabledOnOs(OS.WINDOWS)
+    //@EnabledOnOs(OS.WINDOWS)
     void testMultiplication() {
         System.out.println("in Mul test");
         assertEquals(Math.multiplyExact(6, 8), calc.mul(6, 8));//pass
@@ -109,7 +108,6 @@ public class CalculatorTests {
 
     @Test
     @Tag("Regression")
-    @EnabledForJreRange(max = JRE.JAVA_16, min = JRE.JAVA_12)
     void testSquareRoot() {
         System.out.println("in RootSquare test");
         assertEquals(8, calc.getSquareRoot(64));
@@ -127,6 +125,8 @@ public class CalculatorTests {
         assertEquals(4, calc.getModulus(20, 16));
         assertEquals(1, calc.getModulus(1, 32));
         System.out.println(calc);
+        Exception ex = assertThrowsExactly(ArithmeticException.class, ()->calc.getModulus(40,0));
+        assertTrue(ex.getMessage().contains("b cannot be zero"));
     }
 
 
