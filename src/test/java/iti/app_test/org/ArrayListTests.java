@@ -34,7 +34,7 @@ public class ArrayListTests {
     void testGettingSpecifUser() {
         when(userList.get(7)).thenReturn("Ali Alaa");
         assertEquals(50, userList.size());
-        assertTrue(userList.get(7).contains("Ali"));
+        assertTrue(userList.get(7).contains("Ali Ahmed"));
 
         verify(userList).get(7);
     }
